@@ -1,9 +1,9 @@
 import numpy as np
 
 class LogisticRegressionScratch:
-    def __init__(self,lr = 0.01, epochs = 1000):
+    def __init__(self,lr = 0.01, n_iters = 1000):
         self.lr = lr
-        self.epochs = epochs
+        self.n_iters = n_iters
         self.w = None
         self.b = None
     
@@ -14,7 +14,7 @@ class LogisticRegressionScratch:
         m,n = x.shape
         self.w = np.zeros(n)
         self.b = 0
-        for epoch in range(self.epochs):
+        for _ in range(self.n_iters):
             z = np.dot(x, self.w) + self.b
             y_pred = self.sigmoid(z)
 
@@ -34,23 +34,5 @@ class LogisticRegressionScratch:
         return (y_hat >= 0.5).astype(int)
     
 
-X_binary = np.array([
-    [1, 1],
-    [2, 1],
-    [2, 2],
-    [3, 2],
-    [3, 3],
-    [4, 3],
-    [4, 4],
-    [5, 4]
-])
 
-y_binary = np.array([0, 0, 0, 0, 1, 1, 1, 1])
-
-
-
-model = LogisticRegressionScratch(lr=0.01 , epochs=3000)
-model.fit(X_binary, y_binary)
-predictions = model.predict(X_binary)
-print("Predicted labels:", predictions)
 
