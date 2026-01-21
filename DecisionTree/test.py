@@ -1,19 +1,19 @@
 import numpy as np
-from sklearn.datasets import load_breast_cancer
+from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from DecisionTree import DecisionTree
 
-data = load_breast_cancer()
+data = load_digits()
 X = data.data
 y = data.target
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=72)
 
-model = DecisionTree(max_depth = 10)
+model = DecisionTree(max_depth = 12)
 model.fit(X_train, y_train)
 
 pred = model.predict(X_test)
 
 accuracy = np.sum(pred == y_test)/len(y_test)
 
-print("Accuracy-->",accuracy)
+print("Accuracy-->",accuracy * 100)
